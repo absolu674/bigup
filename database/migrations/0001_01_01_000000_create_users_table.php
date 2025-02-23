@@ -13,13 +13,29 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('firstname', 100)->nullable();
+            $table->string('lastname', 100)->nullable();
+            $table->string('gender', 10)->nullable();
+            $table->string('type', 10)->nullable();
+            $table->string('email', 255)->unique()->nullable();
+            $table->string('phone', 20)->unique()->nullable();
+            $table->string('professional_phone', 20)->unique()->nullable();
+            $table->integer('dedication_price')->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('provider')->nullable();
+            $table->string('bio')->nullable();
+            $table->string('alias');
+            $table->string('provider_id')->nullable();
+            $table->boolean('verified')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE users ADD CONSTRAINT chk_gender CHECK (gender IN ('" . implode("','", \App\Enums\Gender::values()) . "'))");
+        DB::statement("ALTER TABLE users ADD CONSTRAINT chk_type CHECK (type IN ('" . implode("','", \App\Enums\UserType::values()) . "'))");
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
