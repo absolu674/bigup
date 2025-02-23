@@ -23,12 +23,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $type = $this->faker->randomElement(['artist', 'client']);
+        $price = $type == 'artist' ?? $this->faker->randomFloat(2, 100, 500);
+        $proPhone = $type == 'artist' ?? $this->faker->unique()->randomNumber(9);
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'firstname' => $this->faker->firstName,
+            'lastname' => $this->faker->lastName,
+            'gender' => $this->faker->randomElement(['woman', 'man']),
+            'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->unique()->randomNumber(9),
+            'professional_phone' => $proPhone,
+            'dedication_price' => $price,
+            'country' => $this->faker->country,
+            'verified' => $this->faker->boolean,
+            'password' => bcrypt('password'),
+            'bio' => $type == 'artist' ? $this->faker->sentence : null,
+            'type' => $type,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
