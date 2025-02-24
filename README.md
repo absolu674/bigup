@@ -7,6 +7,8 @@ Big Up is a dedication app. Make by Samba Tech
 ## Deployment command
 
 - composer install
+- cp .env.example .env
+- php artisan key:generate
 - php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 - php artisan jwt:secret
 
