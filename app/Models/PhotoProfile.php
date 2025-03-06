@@ -10,4 +10,9 @@ class PhotoProfile extends Model
         'user_id',
         'fichier_id',
     ];
+
+    public function fichier()
+    {
+        return $this->belongsTo(Fichier::class, 'fichier_id');
+    }
 }
