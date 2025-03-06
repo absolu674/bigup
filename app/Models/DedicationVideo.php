@@ -10,15 +10,5 @@ class DedicationVideo extends Model
         'dedication_id',
         'fichier_id',
     ];
-
-    // public function dedication()
-    // {
-    //     return $this->belongsTo(Dedication::class);
-    // }
-
-    // public function fichier()
-    // {
-    //     return $this->belongsTo(Fichier::class);
-    // }
     
 }
