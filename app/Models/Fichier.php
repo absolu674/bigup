@@ -15,8 +15,4 @@ class Fichier extends Model
         'extension',
     ];
 
-    // public function dedicationVideo()
-    // {
-    //     return $this->hasOne(DedicationVideo::class, 'fichier_id');
-    // }
 }
