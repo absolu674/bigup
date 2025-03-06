@@ -37,12 +37,14 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::controller(UserController::class)->group(function(){
             Route::group(['prefix' => 'user'], function () {
                 Route::get('/', 'index');
-                Route::post('{alias}', 'me');
+                Route::get('{alias}', 'me');
                 Route::get('/artist', 'getAllArtist');
+                Route::get('/artist/{alias}', 'showArtist');
                 Route::get('/artist/categories', 'getAllArtistByCategries');
                 Route::get('/artist/category/{slug}', 'getArtistByCategry');
                 Route::get('/artist/show/{artist}', 'showArtist')->name('artist.show');
                 Route::get('/client', 'getAllClient')->middleware('role:admin');
+                Route::get('/client/{alias}', 'showClient')->middleware('role:admin');
             });
         });        
 

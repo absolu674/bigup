@@ -21,9 +21,9 @@ class ClientRepository
         return $this->client->all();
     }
 
-    public function getClientById($id)
+    public function getClientByAlias($alias)
     {
-        return $this->client->find($id);
+        return $this->client->where('alias', $alias)->firstOrFail();
     }
 
     public function votesGiven()
