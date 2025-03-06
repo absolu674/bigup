@@ -96,5 +96,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Dedication::class);
     }
+
+    public function photoProfile()
+    {
+        return $this->hasOneThrough(
+            Fichier::class,
+            PhotoProfile::class,
+            'user_id',
+            'id',
+            'id',
+            'fichier_id'  
+        );
+    }
     
 }

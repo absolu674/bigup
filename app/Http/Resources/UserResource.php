@@ -24,6 +24,8 @@ class UserResource extends JsonResource
             'email' => $this->when($isAdmin, $this->email),
             'phone' => $this->when($isAdmin, $this->phone),
             'bio' => $this->when($this->type == UserType::ARTIST->value, $this->bio),
+            'alias' => $this->alias,
+            'photo_profile' => $this->photoProfile?->path
         ];
     }
 }
