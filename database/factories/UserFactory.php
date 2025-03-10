@@ -25,14 +25,13 @@ class UserFactory extends Factory
     {
         $type = $this->faker->randomElement(['artist', 'client']);
         $price = $type == 'artist' ?? $this->faker->randomFloat(2, 100, 500);
-        $proPhone = $type == 'artist' ?? $this->faker->unique()->randomNumber(9);
         return [
             'firstname' => $this->faker->firstName,
             'lastname' => $this->faker->lastName,
             'gender' => $this->faker->randomElement(['woman', 'man']),
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->unique()->randomNumber(9),
-            'professional_phone' => $proPhone,
+            'professional_phone' => $this->faker->unique()->randomNumber(9),
             'dedication_price' => $price,
             'country' => $this->faker->country,
             'verified' => $this->faker->boolean,
